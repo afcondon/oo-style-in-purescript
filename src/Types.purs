@@ -1,22 +1,17 @@
-module Types (LT(..), Node, Tree(..), fnP) where
+module Types (LT(..), Node, Tree(..), Fn(..), doit) where
 
 import Prelude
 
 import Data.List (List(..), (:), fromFoldable)
 
-import A (fn) as A
-import B (fn) as B
-
 data LT = A | B
 
-type Node = { val :: Int, lt :: LT }
+newtype Fn = Fn (Tree Node -> Tree Node)
+
+doit :: Tree Node -> Tree Node
+doit node@(N { fn: Fn f } _) = f node
+
+type Node = { val :: Int, lt :: LT, fn :: Fn }
 
 data Tree a = N a (List (Tree a))
-
-fnP :: Tree Node -> Tree Node
-fnP node@(N { val, lt }) =
-  case lt of
-   LSM -> A.fn node
-   AD  -> B.fn node
-
 
