@@ -20,5 +20,5 @@ myTree = ctor 1 A ( (ctor 2 B Nil) : (ctor 3 A ((ctor 5 B Nil):(ctor 6 A Nil):Ni
 
 main :: Effect Unit
 main = do
-  let a = doit myTree
+  let a = runF1 myTree
   log "🍝"

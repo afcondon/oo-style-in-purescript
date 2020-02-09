@@ -9,10 +9,18 @@ import Effect.Class.Console (log)
 import Effect.Unsafe (unsafePerformEffect)
 
 ctor :: LT -> LTobj
-ctor lt  =  { lt: lt, fn: Fn fn }
+ctor lt  =  { lt: lt
+            , f1: Fn f1
+            , f2: Fn f2
+            }
 
-fn :: Tree Node -> Tree Node
-fn (N nd cs) = N nd (doit <$> cs)
+f1 :: Tree Node -> Tree Node
+f1 (N nd cs) = N nd (runF1 <$> cs)
   where
-    _ = unsafePerformEffect $ log "fnA" 
+    _ = unsafePerformEffect $ log "f1A" 
+
+f2 :: Tree Node -> Tree Node
+f2 (N nd cs) = N nd (runF2 <$> cs)
+  where
+    _ = unsafePerformEffect $ log "f2A" 
 
