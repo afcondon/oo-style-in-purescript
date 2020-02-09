@@ -8,11 +8,11 @@ import Prelude (($), (<$>))
 import Effect.Class.Console (log)
 import Effect.Unsafe (unsafePerformEffect)
 
-ctor :: LT -> LTobj
-ctor lt  =  { lt: lt
-            , f1: Fn f1
-            , f2: Fn f2
-            }
+ctor :: LTobj
+ctor =  { lt: A
+        , f1: Fn f1
+        , f2: Fn f2
+        }
 
 f1 :: Tree Node -> Tree Node
 f1 (N nd cs) = N nd (runF1 <$> cs)
