@@ -1,8 +1,6 @@
 module Types (LT(..), Node, Tree(..), Fn(..), doit) where
 
-import Prelude
-
-import Data.List (List(..), (:), fromFoldable)
+import Data.List (List)
 
 data LT = A | B
 
