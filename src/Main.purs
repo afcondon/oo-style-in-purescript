@@ -2,12 +2,12 @@ module Main where
 
 import Types
 
-import Prelude (Unit)
 import A (ctor) as MA
 import B (ctor) as MB
-import Data.List (List(..),(:))
+import Data.List (List(..), (:))
 import Effect (Effect)
 import Effect.Console (log)
+import Prelude (Unit, discard, ($))
 
 ctor :: Int -> LT -> List (Tree Node) -> Tree Node
 ctor i lt cs =
@@ -20,5 +20,6 @@ myTree = ctor 1 A ( (ctor 2 B Nil) : (ctor 3 A ((ctor 5 B Nil):(ctor 6 A Nil):Ni
 
 main :: Effect Unit
 main = do
-  let a = runF1 myTree
+  log $ showTree $ runF1 myTree
+  log $ showTree $ runF2 5 myTree
   log "🍝"
